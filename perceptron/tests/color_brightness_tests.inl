@@ -74,6 +74,7 @@ namespace color_brightness {
 					return input[1] + input[2] + input[3] > 1.5;
 				},
 				desired_accuracy,
+				std::uniform_real_distribution(0.0, 1.0),
 				prng_generator,
 				perceptron
 		);
