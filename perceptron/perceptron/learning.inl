@@ -27,13 +27,13 @@ auto learn_and_update_performance(
 		std::queue<int, std::deque<int>> &queue,
 		double &performance
 ) -> void {
-	auto test_color = typename Perceptron<S>::vector_type{1.0};
+	auto test_vector = typename Perceptron<S>::vector_type{1.0};
 	for (std::size_t i = 1; i < S; ++i) {
-		test_color[i] = prng_distribution(prng_generator);
+		test_vector[i] = prng_distribution(prng_generator);
 	}
-	const auto actual_class = target_relation(test_color) ? 1 : 0;
+	const auto actual_class = target_relation(test_vector) ? 1 : 0;
 	const auto computed_class = perceptron.learn(
-			test_color,
+			test_vector,
 			actual_class,
 			0.1
 	);
@@ -45,6 +45,7 @@ template<std::size_t S>
 auto train_perceptron_with_performance_goal(
 		const std::predicate<typename Perceptron<S>::vector_type> auto &target_relation,
 		double target_percentage,
+		std::uniform_real_distribution<double> training_vectors_distribution,
 		std::mt19937_64 &prng_generator,
 		Perceptron<S> &perceptron
 ) -> std::size_t {
@@ -54,15 +55,12 @@ auto train_perceptron_with_performance_goal(
 	auto performance = 0.0;
 	auto iteration = size_t(0);
 	
-	auto prng_distribution = std::uniform_real_distribution(0.0, 1.0);
-	while (
-			performance < target_percentage &&
-			queue.size() != validation_sample_size
-			) {
+	while (performance < target_percentage &&
+	       queue.size() != validation_sample_size) {
 		learn_and_update_performance<S, validation_sample_size>(
 				perceptron,
 				target_relation,
-				prng_distribution,
+				training_vectors_distribution,
 				prng_generator,
 				queue,
 				performance
@@ -75,7 +73,7 @@ auto train_perceptron_with_performance_goal(
 		learn_and_update_performance<S, validation_sample_size>(
 				perceptron,
 				target_relation,
-				prng_distribution,
+				training_vectors_distribution,
 				prng_generator,
 				queue,
 				performance
