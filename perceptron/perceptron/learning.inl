@@ -27,12 +27,10 @@ auto learn_and_update_performance(
 		std::queue<int, std::deque<int>> &queue,
 		double &performance
 ) -> void {
-	const auto test_color = std::array{
-			1.0,
-			prng_distribution(prng_generator),
-			prng_distribution(prng_generator),
-			prng_distribution(prng_generator),
-	};
+	auto test_color = typename Perceptron<S>::vector_type{1.0};
+	for (std::size_t i = 1; i < S; ++i) {
+		test_color[i] = prng_distribution(prng_generator);
+	}
 	const auto actual_class = target_relation(test_color) ? 1 : 0;
 	const auto computed_class = perceptron.learn(
 			test_color,
