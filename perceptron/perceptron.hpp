@@ -40,7 +40,7 @@ template<std::size_t S>
 auto train_perceptron_with_performance_goal(
 		const std::predicate<typename Perceptron<S>::vector_type> auto &target_relation,
 		double target_percentage,
-		std::mt19937_64 *prng_generator,
+		std::mt19937_64 &prng_generator,
 		Perceptron<S> &perceptron
 ) -> std::size_t;
 

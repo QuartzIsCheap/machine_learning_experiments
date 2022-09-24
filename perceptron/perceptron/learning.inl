@@ -11,7 +11,7 @@
 template<std::size_t S, std::size_t N>
 constexpr auto train_perceptron_with_finite_set(
 		const std::array<std::pair<typename Perceptron<S>::vector_type, int>, N> training_set,
-		Perceptron <S> &perceptron
+		Perceptron<S> &perceptron
 ) -> void {
 	for (const auto &pair: training_set) {
 		perceptron.learn(pair.first, pair.second, 0.1);
@@ -20,7 +20,7 @@ constexpr auto train_perceptron_with_finite_set(
 
 template<std::size_t S, std::size_t validation_sample_size>
 auto learn_and_update_performance(
-		Perceptron <S> &perceptron,
+		Perceptron<S> &perceptron,
 		const std::predicate<typename Perceptron<S>::vector_type> auto &target_relation,
 		std::uniform_real_distribution<double> &prng_distribution,
 		std::mt19937_64 &prng_generator,
@@ -48,7 +48,7 @@ auto train_perceptron_with_performance_goal(
 		const std::predicate<typename Perceptron<S>::vector_type> auto &target_relation,
 		double target_percentage,
 		std::mt19937_64 &prng_generator,
-		Perceptron <S> &perceptron
+		Perceptron<S> &perceptron
 ) -> std::size_t {
 	constexpr auto validation_sample_size = 1000;
 	
