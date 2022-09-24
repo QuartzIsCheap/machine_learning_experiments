@@ -68,7 +68,7 @@ namespace color_brightness {
 	) noexcept -> double {
 		auto perceptron = Perceptron<4>(-2.5);
 		const auto iterations = train_perceptron_with_performance_goal(
-				[](std::array<double, 4> input) -> bool {
+				[](const std::array<double, 4> input) -> bool {
 					return input[1] + input[2] + input[3] > 1.5;
 				},
 				99.5,
