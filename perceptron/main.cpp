@@ -8,7 +8,7 @@ int main() {
 	auto prng_generator = std::mt19937_64(std::random_device()());
 	
 	const auto compile_time_trained_color_brightness_accuracy =
-			color_brightness_test_with_finite_set(
+			color_brightness::finite_set_test(
 					prng_generator
 			);
 	std::cout << "Color brightness accuracy with fixed set training : "
@@ -20,7 +20,7 @@ int main() {
 	std::cout << std::endl;
 	
 	const auto dynamically_trained_color_brightness_accuracy =
-			color_brightness_test_with_dynamic_training(
+			color_brightness::dynamic_training_test(
 					prng_generator
 			);
 	std::cout << "Color brightness accuracy with dynamic training : "
