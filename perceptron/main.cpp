@@ -27,7 +27,7 @@ int main() {
 	if (!run_test(
 			color_brightness::finite_set_test,
 			prng_generator,
-			"Color brightness with fixed set training"
+			"Color brightness test with fixed set training"
 	))
 		exit_status = EXIT_FAILURE;
 	
@@ -36,7 +36,7 @@ int main() {
 	if (!run_test(
 			color_brightness::dynamic_training_test,
 			prng_generator,
-			"Color brightness with dynamic training"
+			"Color brightness test with dynamic training"
 	))
 		exit_status = EXIT_FAILURE;
 	
