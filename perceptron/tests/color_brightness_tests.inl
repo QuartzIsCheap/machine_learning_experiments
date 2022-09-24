@@ -66,17 +66,19 @@ namespace color_brightness {
 	auto dynamic_training_test(
 			std::mt19937_64 &prng_generator
 	) noexcept -> double {
+		constexpr auto desired_accuracy = 99.5;
+		
 		auto perceptron = Perceptron<4>(-2.5);
 		const auto iterations = train_perceptron_with_performance_goal(
 				[](const std::array<double, 4> input) -> bool {
 					return input[1] + input[2] + input[3] > 1.5;
 				},
-				99.5,
+				desired_accuracy,
 				prng_generator,
 				perceptron
 		);
-		std::cout << "The perceptron took " << iterations
-		          << " runs to reach 99.5% accuracy." << std::endl;
+		std::cout << "The perceptron took " << iterations << " runs to reach "
+		          << desired_accuracy << "% accuracy." << std::endl;
 		return test_perceptron(perceptron, prng_generator);
 	}
 }
