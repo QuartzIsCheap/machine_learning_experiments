@@ -15,6 +15,13 @@ namespace color_brightness {
 	) noexcept -> double;
 }
 
+namespace positive_x {
+	auto dynamic_training_test(
+			std::mt19937_64 &prng_generator
+	) noexcept -> double;
+}
+
 #include "tests/color_brightness_tests.inl"
+#include "tests/positive_x_tests.inl"
 
 #endif //PERCEPTRON_TESTS_HPP

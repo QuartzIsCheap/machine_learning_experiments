@@ -40,5 +40,14 @@ int main() {
 	))
 		exit_status = EXIT_FAILURE;
 	
+	std::cout << std::endl;
+	
+	if (!run_test(
+			positive_x::dynamic_training_test,
+			prng_generator,
+			"Positive x with dynamic training"
+	))
+		exit_status = EXIT_FAILURE;
+	
 	return exit_status;
 }
